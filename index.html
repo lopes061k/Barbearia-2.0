@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barbearia Bigode Grosso - Barbearia de Cuiudo</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<base target="_blank">
+</head>
+<body>
+
+    <!-- ========== HEADER / NAVEGAÇÃO ========== -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <img src="image.png" alt="Bigode Grosso" class="logo-img">
+                <span>Bigode <span>Grosso</span></span>
+            </a>
+            <nav id="navbar">
+                <ul id="nav-links">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#equipe">Equipe</a></li>
+                    <li id="nav-agendamento"><a href="#agendamento">Agendamento</a></li>
+                    <li><a href="#localizacao">Localização</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                    <li id="nav-dashboard" class="hidden"><a href="#dashboard">Painel</a></li>
+                    <li id="nav-login"><a href="#" id="btn-login-nav"><i class="fas fa-user"></i> Entrar</a></li>
+                    <li id="nav-user" class="hidden">
+                        <a href="#" id="btn-user-nav">
+                            <i class="fas fa-user-circle"></i> <span id="user-name-display">Usuário</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="user-dropdown">
+                            <a href="#" id="btn-meus-agendamentos"><i class="fas fa-calendar"></i> Meus Agendamentos</a>
+                            <a href="#" id="btn-logout"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== MODAL DE LOGIN / CADASTRO ========== -->
+    <div id="auth-modal" class="modal hidden">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+
+            <!-- Tabs -->
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Entrar</button>
+                <button class="auth-tab" data-tab="register">Criar Conta</button>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login-form" class="auth-panel active">
+                <h3><i class="fas fa-sign-in-alt"></i> Acesse sua Conta</h3>
+                <form id="form-login">
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> E-mail</label>
+                        <input type="email" id="login-email" placeholder="seu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Senha</label>
+                        <input type="password" id="login-password" placeholder="Sua senha" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-sign-in-alt"></i> Entrar
+                    </button>
+                </form>
+                <div class="auth-separator">
+                    <span>ou</span>
+                </div>
+                <button class="btn btn-outline btn-full" id="btn-guest">
+                    <i class="fas fa-user"></i> Continuar como Visitante
+                </button>
+            </div>
+
+            <!-- Register Form -->
+            <div id="register-form" class="auth-panel">
+                <h3><i class="fas fa-user-plus"></i> Criar Conta</h3>
+                <form id="form-register">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Nome Completo</label>
+                        <input type="text" id="reg-name" placeholder="Seu nome completo" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> Telefone / WhatsApp</label>
+                        <input type="tel" id="reg-phone" placeholder="(61) 99999-9999" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-envelope"></i> E-mail</label>
+                        <input type="email" id="reg-email" placeholder="seu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Senha</label>
+                        <input type="password" id="reg-password" placeholder="Mínimo 6 caracteres" required minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-lock"></i> Confirmar Senha</label>
+                        <input type="password" id="reg-password-confirm" placeholder="Repita a senha" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-user-plus"></i> Criar Conta
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== HERO SECTION ========== -->
+    <section id="home" class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <p class="hero-subtitle">Bem-vindo à</p>
+            <h1>Barbearia <span>Bigode Grosso</span></h1>
+            <p class="hero-text">Estilo, tradição e modernidade em cada corte. 
+               Sua melhor versão começa aqui.</p>
+            <div class="hero-buttons">
+                <a href="#agendamento" class="btn btn-primary" id="hero-agendar">
+                    <i class="fas fa-calendar-check"></i> Agendar Agora
+                </a>
+                <a href="#servicos" class="btn btn-outline">
+                    <i class="fas fa-cut"></i> Nossos Serviços
+                </a>
+            </div>
+        </div>
+        <div class="scroll-down">
+            <a href="#servicos"><i class="fas fa-chevron-down"></i></a>
+        </div>
+    </section>
+
+    <!-- ========== SOBRE / INFO ========== -->
+    <section class="about-info">
+        <div class="container about-grid">
+            <div class="info-card">
+                <i class="fas fa-clock"></i>
+                <h3>Horário</h3>
+                <p>Seg - Sex: 8h às 21h<br>Sáb: 8h às 22h<br>Dom: 9h ás 12h</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Endereço</h3>
+                <p>SH Ponte de Terra - Pte. Alta Norte <br> Gama - Brasilia, DF</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-phone-alt"></i>
+                <h3>Telefone</h3>
+                <p>(61) 99999-8888<br>(61) 3333-4444</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SERVIÇOS ========== -->
+    <section id="servicos" class="services">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">O que oferecemos</p>
+                <h2 class="section-title">Nossos <span>Serviços</span></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="services-grid" id="services-grid">
+                <!-- Serviços serão renderizados via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== EQUIPE ========== -->
+    <section id="equipe" class="team">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Conheça nossos</p>
+                <h2 class="section-title">Profissionais <span>Especializados</span></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="team-grid" id="team-grid">
+                <!-- Barbeiros serão renderizados via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== AGENDAMENTO ONLINE ========== -->
+    <section id="agendamento" class="scheduling">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Reserve seu horário</p>
+                <h2 class="section-title">Agendamento <span>Online</span></h2>
+                <div class="section-line"></div>
+            </div>
+
+            <!-- Mensagem para visitantes não logados -->
+            <div id="agendamento-login-msg" class="login-required-msg hidden">
+                <div class="login-required-box">
+                    <i class="fas fa-lock"></i>
+                    <h3>Faça Login para Agendar</h3>
+                    <p>Para realizar um agendamento, você precisa estar logado em sua conta.</p>
+                    <button class="btn btn-primary" id="btn-login-agendamento">
+                        <i class="fas fa-sign-in-alt"></i> Entrar / Criar Conta
+                    </button>
+                </div>
+            </div>
+
+            <div class="scheduling-wrapper" id="agendamento-form-wrapper">
+                <form id="bookingForm" class="booking-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="booking-name">
+                                <i class="fas fa-user"></i> Nome Completo
+                            </label>
+                            <input type="text" id="booking-name" placeholder="Seu nome completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-phone">
+                                <i class="fas fa-phone"></i> Telefone / WhatsApp
+                            </label>
+                            <input type="tel" id="booking-phone" placeholder="(61) 99999-9999" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="booking-email">
+                                <i class="fas fa-envelope"></i> E-mail
+                            </label>
+                            <input type="email" id="booking-email" placeholder="seu@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-service">
+                                <i class="fas fa-cut"></i> Serviço
+                            </label>
+                            <select id="booking-service" required>
+                                <option value="">Selecione um serviço</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="booking-barber">
+                                <i class="fas fa-user-tie"></i> Profissional
+                            </label>
+                            <select id="booking-barber" required>
+                                <option value="">Selecione um profissional</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-date">
+                                <i class="fas fa-calendar-alt"></i> Data
+                            </label>
+                            <input type="date" id="booking-date" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="booking-time">
+                                <i class="fas fa-clock"></i> Horário
+                            </label>
+                            <select id="booking-time" required disabled>
+                                <option value="">Primeiro selecione a data</option>
+                            </select>
+                            <small id="time-status" class="form-hint"></small>
+                        </div>
+                        <div class="form-group">
+                            <label for="booking-notes">
+                                <i class="fas fa-comment-dots"></i> Observações
+                            </label>
+                            <input type="text" id="booking-notes" placeholder="Alguma observação?">
+                        </div>
+                    </div>
+
+                    <!-- Resumo do agendamento -->
+                    <div id="booking-summary" class="booking-summary hidden">
+                        <h4><i class="fas fa-receipt"></i> Resumo do Agendamento</h4>
+                        <div class="summary-grid">
+                            <div class="summary-item">
+                                <span class="summary-label">Serviço:</span>
+                                <span class="summary-value" id="summary-service">-</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Profissional:</span>
+                                <span class="summary-value" id="summary-barber">-</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Data:</span>
+                                <span class="summary-value" id="summary-date">-</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Horário:</span>
+                                <span class="summary-value" id="summary-time">-</span>
+                            </div>
+                            <div class="summary-item summary-total">
+                                <span class="summary-label">Valor Total:</span>
+                                <span class="summary-value" id="summary-price">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-full" id="btn-confirmar">
+                        <i class="fas fa-calendar-check"></i> Confirmar Agendamento
+                    </button>
+                </form>
+
+                <!-- Confirmação -->
+                <div id="bookingConfirmation" class="booking-confirmation hidden">
+                    <div class="confirmation-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Agendamento Confirmado!</h3>
+                    <div id="confirmationDetails" class="confirmation-details"></div>
+                    <p class="confirmation-msg">
+                        Você receberá uma confirmação por WhatsApp em instantes.
+                    </p>
+                    <button class="btn btn-primary" id="newBookingBtn">
+                        <i class="fas fa-plus"></i> Novo Agendamento
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DASHBOARD ADMIN / FUNCIONÁRIO ========== -->
+    <section id="dashboard" class="dashboard hidden">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle" id="dashboard-subtitle">Painel Administrativo</p>
+                <h2 class="section-title">Painel de <span>Controle</span></h2>
+                <div class="section-line"></div>
+            </div>
+
+            <!-- Dashboard Stats -->
+            <div class="dashboard-stats" id="dashboard-stats">
+                <div class="stat-card">
+                    <i class="fas fa-calendar-check"></i>
+                    <div class="stat-info">
+                        <h4 id="stat-total-hoje">0</h4>
+                        <p>Agendamentos Hoje</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-dollar-sign"></i>
+                    <div class="stat-info">
+                        <h4 id="stat-receita-hoje">R$ 0,00</h4>
+                        <p>Receita de Hoje</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <div class="stat-info">
+                        <h4 id="stat-clientes-hoje">0</h4>
+                        <p>Clientes Atendidos</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-clock"></i>
+                    <div class="stat-info">
+                        <h4 id="stat-proximos">0</h4>
+                        <p>Próximos Agendamentos</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs do Dashboard -->
+            <div class="dashboard-tabs">
+                <button class="dash-tab active" data-dash-tab="hoje">
+                    <i class="fas fa-calendar-day"></i> Agendamentos de Hoje
+                </button>
+                <button class="dash-tab" data-dash-tab="todos">
+                    <i class="fas fa-list"></i> Todos os Agendamentos
+                </button>
+                <button class="dash-tab" data-dash-tab="lucros">
+                    <i class="fas fa-chart-line"></i> Lucros por Profissional
+                </button>
+                <button class="dash-tab" data-dash-tab="clientes">
+                    <i class="fas fa-users"></i> Clientes
+                </button>
+            </div>
+
+            <!-- Painel: Agendamentos de Hoje -->
+            <div id="dash-panel-hoje" class="dash-panel active">
+                <div class="panel-header">
+                    <h3><i class="fas fa-calendar-day"></i> Agendamentos de Hoje - <span id="data-hoje"></span></h3>
+                    <div class="panel-actions">
+                        <button class="btn btn-sm btn-outline" id="btn-refresh">
+                            <i class="fas fa-sync-alt"></i> Atualizar
+                        </button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Horário</th>
+                                <th>Cliente</th>
+                                <th>Serviço</th>
+                                <th>Profissional</th>
+                                <th>Valor</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela-hoje">
+                            <!-- Renderizado via JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="empty-hoje" class="empty-state hidden">
+                    <i class="fas fa-calendar-times"></i>
+                    <p>Nenhum agendamento para hoje</p>
+                </div>
+            </div>
+
+            <!-- Painel: Todos os Agendamentos -->
+            <div id="dash-panel-todos" class="dash-panel">
+                <div class="panel-header">
+                    <h3><i class="fas fa-list"></i> Todos os Agendamentos</h3>
+                    <div class="panel-actions">
+                        <input type="date" id="filtro-data" class="form-control-sm">
+                        <select id="filtro-barbeiro" class="form-control-sm">
+                            <option value="">Todos os profissionais</option>
+                        </select>
+                        <button class="btn btn-sm btn-primary" id="btn-filtrar">
+                            <i class="fas fa-filter"></i> Filtrar
+                        </button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Horário</th>
+                                <th>Cliente</th>
+                                <th>Telefone</th>
+                                <th>Serviço</th>
+                                <th>Profissional</th>
+                                <th>Valor</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela-todos">
+                            <!-- Renderizado via JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="empty-todos" class="empty-state hidden">
+                    <i class="fas fa-inbox"></i>
+                    <p>Nenhum agendamento encontrado</p>
+                </div>
+            </div>
+
+            <!-- Painel: Lucros por Profissional -->
+            <div id="dash-panel-lucros" class="dash-panel">
+                <div class="panel-header">
+                    <h3><i class="fas fa-chart-line"></i> Lucros por Profissional</h3>
+                    <div class="panel-actions">
+                        <input type="date" id="lucro-data-inicio" class="form-control-sm">
+                        <span>até</span>
+                        <input type="date" id="lucro-data-fim" class="form-control-sm">
+                        <button class="btn btn-sm btn-primary" id="btn-calcular-lucros">
+                            <i class="fas fa-calculator"></i> Calcular
+                        </button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Profissional</th>
+                                <th>Serviços Realizados</th>
+                                <th>Total em Serviços</th>
+                                <th>Comissão (50%)</th>
+                                <th>Lucro para Barbearia</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela-lucros">
+                            <!-- Renderizado via JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="lucro-total-box" class="lucro-total-box">
+                    <div class="lucro-item">
+                        <span>Total Geral:</span>
+                        <strong id="lucro-total-geral">R$ 0,00</strong>
+                    </div>
+                    <div class="lucro-item">
+                        <span>Total Comissões:</span>
+                        <strong id="lucro-total-comissao">R$ 0,00</strong>
+                    </div>
+                    <div class="lucro-item lucro-destaque">
+                        <span>Lucro Líquido:</span>
+                        <strong id="lucro-total-liquido">R$ 0,00</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Painel: Clientes -->
+            <div id="dash-panel-clientes" class="dash-panel">
+                <div class="panel-header">
+                    <h3><i class="fas fa-users"></i> Cadastro de Clientes</h3>
+                    <div class="panel-actions">
+                        <input type="text" id="busca-cliente" placeholder="Buscar cliente..." class="form-control-sm">
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Telefone</th>
+                                <th>E-mail</th>
+                                <th>Total de Agendamentos</th>
+                                <th>Último Agendamento</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela-clientes">
+                            <!-- Renderizado via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== MEUS AGENDAMENTOS (CLIENTE) ========== -->
+    <section id="meus-agendamentos" class="scheduling hidden">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Seus horários</p>
+                <h2 class="section-title">Meus <span>Agendamentos</span></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="meus-agendamentos-wrapper">
+                <div id="lista-meus-agendamentos" class="agendamentos-list">
+                    <!-- Renderizado via JS -->
+                </div>
+                <div id="empty-meus-agendamentos" class="empty-state">
+                    <i class="fas fa-calendar-times"></i>
+                    <p>Você ainda não tem agendamentos</p>
+                    <a href="#agendamento" class="btn btn-primary">
+                        <i class="fas fa-calendar-plus"></i> Fazer Agendamento
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== LOCALIZAÇÃO ========== -->
+    <section id="localizacao" class="location">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Onde estamos</p>
+                <h2 class="section-title">Nossa <span>Localização</span></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="location-wrapper">
+                <div class="location-info">
+                    <div class="location-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Endereço</h4>
+                            <p>SH Ponte de Terra - Pte. Alta Norte (Gama), Brasília - DF, 72427-010</p>
+                        </div>
+                    </div>
+                    <div class="location-item">
+                        <i class="fas fa-subway"></i>
+                        <div>
+                            <h4>Como Chegar</h4>
+                            <p>Terminal BRT-<br>Ônibus: Linhas 3212,3210,206.9</p>
+                        </div>
+                    </div>
+                    <div class="location-item">
+                        <i class="fas fa-parking"></i>
+                        <div>
+                            <h4>Estacionamento</h4>
+                            <p>Estacionamento do outro lado da rua<br></p>
+                        </div>
+                    </div>
+                    <a href="https://maps.app.goo.gl/e8TwpTxWaWqsp6yJA" target="_blank" class="btn btn-primary">
+                        <i class="fas fa-directions"></i> Abrir no Google Maps
+                    </a>
+                </div>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.1976!2d-46.6432!3d-23.5432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDMyJzM1LjUiUyA0NsKwMzgnMzUuNSJX!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+                        height="100%" 
+                        width="100%"
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Localização Bigode Grosso">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTATO ========== -->
+    <section id="contato" class="scheduling">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-subtitle">Fale Conosco</p>
+                <h2 class="section-title">Entre em <span>Contato</span></h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="scheduling-wrapper">
+                <form id="contactForm" class="booking-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact-name">
+                                <i class="fas fa-user"></i> Nome
+                            </label>
+                            <input type="text" id="contact-name" placeholder="Digite seu nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-phone">
+                                <i class="fas fa-phone"></i> Telefone / WhatsApp
+                            </label>
+                            <input type="tel" id="contact-phone" placeholder="(61) 99999-9999" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contact-email">
+                                <i class="fas fa-envelope"></i> E-mail
+                            </label>
+                            <input type="email" id="contact-email" placeholder="Digite seu e-mail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-subject">
+                                <i class="fas fa-tag"></i> Assunto
+                            </label>
+                            <select id="contact-subject" required>
+                                <option value="">Selecione</option>
+                                <option value="duvida">Dúvida</option>
+                                <option value="reclamacao">Reclamação</option>
+                                <option value="sugestao">Sugestão</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group full-width">
+                            <label for="contact-message">
+                                <i class="fas fa-comment-dots"></i> Mensagem
+                            </label>
+                            <textarea id="contact-message" placeholder="Digite sua mensagem" rows="4" required></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-paper-plane"></i> Enviar Mensagem
+                    </button>
+                </form>
+
+                <div id="contact-success" class="booking-confirmation hidden">
+                    <div class="confirmation-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Mensagem Enviada!</h3>
+                    <p class="confirmation-msg">Entraremos em contato em breve.</p>
+                    <button class="btn btn-primary" id="newContactBtn">
+                        <i class="fas fa-envelope"></i> Nova Mensagem
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <a href="#" class="footer-logo">
+                    <img src="image.png" alt="Bigode Grosso" class="footer-logo-img">
+                    <span>BIGODE<span>GROSSO</span></span>
+                </a>
+                <p>Tradição e modernidade em cada corte. Sua melhor versão começa aqui no Bigode Grosso.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#equipe">Equipe</a></li>
+                    <li><a href="#agendamento">Agendamento</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contato</h4>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-phone"></i> (61) 99999-8888</li>
+                    <li><i class="fas fa-envelope"></i> contato@bigodegrosso.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i>
+                        <span>Ponte Alta Norte, Avenida São Francisco<br> Gama, Brasília - DF</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Redes Sociais</h4>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/?locale=pt_BR" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.tiktok.com/pt-BR" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://wa.me/5561999998888" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Bigode Grosso. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5561999998888" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">Fale Conosco!</span>
+    </a>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden">
+        <i class="fas fa-info-circle"></i>
+        <span id="toast-message">Mensagem</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
